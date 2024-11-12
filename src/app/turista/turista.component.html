@@ -1,0 +1,176 @@
+<div>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>CTG</title>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">CTG.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a routerLink="/turista" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Acerca de</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Lugares</a></li>
+                    <li class="nav-item"><a routerLink="/inicio-sesion" class="nav-link">Iniciar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-wrap js-fullheight">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
+                data-scrollax-parent="true">
+                <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                    <h1 class="mb-4 text-left" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                        <strong>Explora</strong> <br> tu ciudad increíbles experiencias
+                    </h1>
+                    <p class="text-left" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Encuentra
+                        excelentes playas para disfrutar en familia</p>
+                    <div class="block-17 my-4">
+
+                        <div class="fields d-block d-flex">
+                            <div class="textfield-search one-third">
+                                <input type="text" class="form-control"
+                                    placeholder="Por ejemplo: Productos, servicio, Playas" [(ngModel)]="nombreProducto"
+                                    name="nombreProducto">
+                            </div>
+                            <div class="select-wrap one-third">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select class="form-control" id="zona" name="zona" [(ngModel)]="zonaSeleccionada"
+                                    required>
+                                    <option value="" disabled selected>¿Dónde?</option>
+                                    <option *ngFor="let zon of zona" [ngValue]="zon">{{ zon.nombreZona }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button (click)="buscar()" class="search-submit btn btn-primary">Buscar</button>
+                    </div>
+                    
+                    <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': mostrarResultados}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>Lista de Productos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                        (click)="cerrarModal()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sortData('nombreProducto')">
+                                                    Nombre
+                                                    <span *ngIf="sortColumn === 'nombreProducto'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                                                  </th>
+                                                  <th (click)="sortData('categoria.nombreCategoria')">
+                                                      Categoría
+                                                      <span *ngIf="sortColumn === 'categoria.nombreCategoria'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                                                    </th>
+                                                  <th (click)="sortData('precioMin')">
+                                                    Precio Min
+                                                    <span *ngIf="sortColumn === 'precioMin'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                                                  </th>
+                                                  <th (click)="sortData('precioMax')">
+                                                    Precio Max
+                                                    <span *ngIf="sortColumn === 'precioMax'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                                                  </th>
+                                                  <th (click)="sortData('zona.nombreZona')">
+                                                    Zona
+                                                    <span *ngIf="sortColumn === 'zona.nombreZona'">{{ sortDirection === 'asc' ? '↑' : '↓' }}</span>
+                                                  </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let producto of productosFiltrados">
+                                                <td>{{ producto.nombreProducto }}</td>
+                                                <td>{{ producto.categoria?.nombreCategoria }}</td>
+                                                <td>{{ producto.precioMin }}</td>
+                                                <td>{{ producto.precioMax }}</td>
+                                                <td>{{ producto.zona?.nombreZona }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="regresar-button" data-dismiss="modal"
+                                        (click)="cerrarModal()">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-left">O navega por los aspectos más destacados</p>
+                    <p class="browse">
+                        <span><a href="/turista/productos"><img
+                                    src="https://cdn-icons-png.flaticon.com/512/1170/1170679.png"
+                                    style="width: 25px; height: 25px;" alt="Productos">Productos</a></span>
+                        <span><a href="#"><img src="https://cdn-icons-png.freepik.com/512/5062/5062832.png"
+                                    style="width: 25px; height: 25px;" alt="Servicios">Servicios</a></span>
+                        <span><a href="#"><img src="https://pngimg.es/d/beach_PNG82.png"
+                                    style="width: 25px; height: 25px;" alt="Playas">Playas</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section services-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex align-self-stretch ftco-animate service-container">
+                    <div class="media block-6 services d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon"><span class="flaticon-guarantee"></span></div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Mejor Precio Garantizado</h3>
+                            <p>Reserva con confianza sabiendo que obtendrás el mejor precio posible para tus necesidades
+                                y disfrutar las mejores experiencias en nuestra ciudad.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-self-stretch ftco-animate service-container">
+                    <div class="media block-6 services d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon"><span class="flaticon-like"></span></div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Los Viajeros nos Aman</h3>
+                            <p>Desde la calidad de nuestro servicio hasta la atención al detalle, cada aspecto de tu
+                                experiencia está diseñado para enamorarte. ¡Ven y descubre por qué los viajeros nos
+                                eligen!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-self-stretch ftco-animate service-container">
+                    <div class="media block-6 services d-block text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="icon"><span class="flaticon-support"></span></div>
+                        </div>
+                        <div class="media-body p-2 mt-2">
+                            <h3 class="heading mb-3">Nuestro Soporte Dedicado</h3>
+                            <p>Con una atención personalizada y un enfoque centrado en el cliente, nuestro equipo de
+                                soporte dedicado está listo para resolver cualquier problema que puedas tener y hacer
+                                que tu experiencia sea excepcional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</div>

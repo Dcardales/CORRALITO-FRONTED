@@ -1,0 +1,50 @@
+<<div class="container">
+  <h2>Crear Nuevo Administrador</h2>
+  <form (ngSubmit)="crearAdministrador()" #adminForm="ngForm">
+    <div class="form-group">
+      <label for="tipoIdentificacion">Tipo de Identificación:</label>
+      <select class="form-control" id="tipoIdentificacion" name="tipoIdentificacion" 
+        [(ngModel)]="admin.tipoIdentificacion" required>
+        <option value="CC">CC</option>
+        <option value="PA">PA</option>
+        <option value="CE">CE</option>
+        <option value="NIT">NIT</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="identificacion">Identificación:</label>
+      <input type="text" class="form-control" id="identificacion" name="identificacion" 
+        [(ngModel)]="admin.identificacion" required>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="admin.nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="admin.apellidos" required>
+    </div>
+    <div class="form-group">
+      <label for="correo">Correo:</label>
+      <input type="email" class="form-control" id="correo" name="correo" [(ngModel)]="admin.email" required>
+    </div>
+    <div class="form-group">
+      <label for="telefono">Teléfono:</label>
+      <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="admin.telefono" required>
+    </div>
+    <div class="form-group">
+      <label for="contrasena">Contraseña:</label>
+      <input type="password" class="form-control" id="contrasena" name="contrasena" [(ngModel)]="admin.password" required>
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <select class="form-control" id="estado" name="estado" [(ngModel)]="admin.estado" required>
+        <option value="ACTIVO">ACTIVO</option>
+        <option value="INACTIVO">INACTIVO</option>
+      </select>
+    </div>
+
+  
+    <button type="submit" class="guardar-button" [disabled]="adminForm.invalid">Crear Administrador</button>
+  </form>
+</div>

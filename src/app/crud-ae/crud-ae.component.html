@@ -1,0 +1,49 @@
+<div class="contenido-principal">
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-toggle" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <div class="logo">
+      <p><b>CORRALITO</b></p>
+      <div class="panel">
+        <p>Panel Administrador</p>
+      </div>
+    </div>
+    
+    <!--DASHBOARD - INICIO-->
+    <nav>   
+      <ul>
+        
+        <li>
+          <a routerLink="/panel-admin">
+            <i class="fas fa-home menu-icon"></i>
+            <span class="menu-text">Dashboard</span>
+          </a>  
+        </li>
+
+        <li>
+          <!--ADMIN - Ver todos los administradores-->
+          <a (click)="verAdministradores()">
+            <i class="fas fa-users-cog menu-icon"></i>
+            <span class="menu-text">Administradores</span>
+          </a>
+
+          <div class="salir-boton"> 
+            <a routerLink="/">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+  <div class="content" [ngClass]="{'collapsed': isSidebarCollapsed}">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div class="panel-admin" [ngStyle]="{'background-image': showBackgroundImage ? 'url(https://www.geckoboard.com/uploads/finance-dashboard-example.png)' : 'none'}"></div>
+

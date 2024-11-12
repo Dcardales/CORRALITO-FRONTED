@@ -1,0 +1,156 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: auto; 
+    margin-right: 0; 
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .crud-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    width: 200px;
+  }
+  
+  .crud-container h2 {
+    margin-top: 0;
+  }
+  
+  .crud-container p {
+    margin: 5px 0;
+  }
+  
+  .crud-container button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .crud-container button:first-of-type {
+    background-color: #4CAF50;
+  }
+  
+  .crud-container button:nth-of-type(2) {
+    background-color: #2196F3;
+  }
+  
+  .crud-container button:last-of-type {
+    background-color: #f44336;
+  }
+  
+  .editar-button {
+    background-color: #2196F3; 
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .eliminar-button {
+    background-color: #f44336; 
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .cambiar-contrasena-button {
+    background-color: #FFC107; 
+    color: black;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .guardar-button,
+  .cancelar-button {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: -120px;
+    margin-left: 130px;
+    margin-top: 45px;
+  }
+  
+  .guardar-button:hover,
+  .cancelar-button:hover {
+    background-color: #45a049; 
+  }
+
+  .nuevo-button{
+
+    background-color: #00b953; 
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    left: 210px; 
+
+  }
+  
+
+   .form-group {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    width: calc(33.3% - 20px);
+    box-sizing: border-box; 
+}
+
+.form-group select {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+
+}
+  
+  label {
+    display: block; 
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 20px;
+    width: 50%;
+  }
+  

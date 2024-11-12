@@ -1,0 +1,43 @@
+<div>
+    <!--LISTA DE PERFILES-->
+    <h1>Listado de Perfiles</h1>
+    <div class="mover-button">
+        <button (click)="crearPerfil()" class="nuevo-button">
+            Nuevo Perfil...
+        </button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let perfil of perfil">
+                <td>{{ perfil.idPerfil }}</td>
+                <td>{{ perfil.nombrePerfil }}</td>
+                <td>
+                    <button class="editar-button" *ngIf="!perfil.editando"
+                        (click)="editarPerfil(perfil)">Editar</button>
+                    <button class="eliminar-button" (click)="borrarPerfil(perfil)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngFor="let perfil of perfil">
+        <div *ngIf="perfil.editando">
+            <div class="editar-container">
+                <div class="form-group">
+                    <label for="nombre">Nombre Perfil:</label>
+                    <input type="text" class="form-control" id="nombrePerfil" name="nombrePerfil"
+                        [(ngModel)]="perfil.nombrePerfil" required>
+                </div>
+                <button *ngIf="perfil.editando" class="guardar-button" (click)="guardarPerfil(perfil)">Guardar</button>
+                    <button *ngIf="perfil.editando" class="cancelar-button" (click)="cancelarEdicion(perfil)">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

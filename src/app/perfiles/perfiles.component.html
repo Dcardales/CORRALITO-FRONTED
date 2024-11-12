@@ -1,0 +1,119 @@
+<div>
+  <!--LISTA DE Usuarios-->
+  <h1>Listado de Usuarios</h1>
+  <div class="mover-button">
+    <button (click)="crearUsuario()" class="nuevo-button">
+      Nuevo Usuario...
+    </button>
+    <input type="text" style="width: 400px; height: 20px; padding: 15px;" (input)="filtrarPorApellido($event)"
+      placeholder="Buscar por apellido">
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Perfil</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.idUsuario }}</td>
+        <td>{{ usuario.nombreUsuario }}</td>
+        <td>{{ usuario.nombre }} {{ usuario.apellidos }}</td>
+        <td>{{ usuario.correo }}</td>
+        <td>{{ usuario.perfil.nombrePerfil }}</td>
+        <td>{{ usuario.estado }}</td>
+        <td>
+          <button class="editar-button" *ngIf="!usuario.editando" (click)="editarUsuario(usuario)">Editar</button>
+          <button class="eliminar-button" (click)="borrarUsuario(usuario)">Eliminar</button>
+          <button class="cambiar-contrasena-button" *ngIf="!usuario.editar" (click)="cambiarContrasena(usuario)">Cambiar
+            Contraseña</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--CAMBIAR CONTRASEÑA-->
+  <div *ngFor="let usuario of usuarios">
+    <div *ngIf="usuario.editar">
+      <div class="form-group">
+        <label for="contrasenaAnterior">Contraseña anterior:</label>
+        <input type="password" class="form-control" id="contrasenaAnterior" name="contrasenaAnterior"
+          [(ngModel)]="usuario.contrasenaAnterior" required>
+      </div>
+      <div class="form-group">
+        <label for="nuevaContrasena">Nueva contraseña:</label>
+        <input type="password" class="form-control" id="nuevaContrasena" name="nuevaContrasena"
+          [(ngModel)]="usuario.nuevaContrasena" required>
+      </div>
+      <button *ngIf="usuario.editar" class="guardar-button" (click)="guardarCambiosC(usuario)">Guardar</button>
+      <button *ngIf="usuario.editar" class="cancelar-button" (click)="cancelarCambioC(usuario)">Cancelar</button>
+    </div>
+  </div>
+
+  <!--EDITAR USUARIO-->
+  <div *ngFor="let usuario of usuarios">
+    <div *ngIf="usuario.editando">
+      <div class="editar-container">
+        <div class="form-group">
+          <label for="tipoIdentificacion">Tipo de Identificación:</label>
+          <select class="form-control" id="tipoIdentificacion" name="tipoIdentificacion"
+            [(ngModel)]="usuario.tipoIdentificacion" required>
+            <option value="CC">CC</option>
+            <option value="PA">PA</option>
+            <option value="CE">CE</option>
+            <option value="NIT">NIT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="identificacion">Identificación:</label>
+          <input type="number" class="form-control" id="identificacion" name="identificacion"
+            [(ngModel)]="usuario.identificacion" required>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="usuario.nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="usuario.apellidos"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" class="form-control" id="correo" name="correo" [(ngModel)]="usuario.correo" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="usuario.telefono"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="nombreUsuario">Nombre de Usuario:</label>
+          <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario"
+            [(ngModel)]="usuario.nombreUsuario" readonly>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <select class="form-control" id="estado" name="estado" [(ngModel)]="usuario.estado" required>
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="perfil">Perfil:</label>
+          <select class="form-control" id="perfil" name="perfil" [(ngModel)]="usuario.perfil.idPerfil" required>
+            <option *ngFor="let perfil of perfil" [value]="perfil.idPerfil">{{ perfil.nombrePerfil }}</option>
+          </select>
+        </div>
+      </div>
+      <button *ngIf="usuario.editando" class="guardar-button" (click)="guardarCambios(usuario)">Guardar</button>
+      <button *ngIf="usuario.editando" class="cancelar-button" (click)="cancelarEdicion(usuario)">Cancelar</button>
+    </div>
+  </div>
+</div>

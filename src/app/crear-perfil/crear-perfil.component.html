@@ -1,0 +1,10 @@
+<div class=".contenido-principal">
+    <h2>Crear Nuevo Perfil</h2>
+    <form (ngSubmit)="crearPerfil()" #perfilForm="ngForm">
+      <div class="form-group">
+        <label for="nombre">Nombre Perfil:</label>
+        <input type="text" class="form-control" id="nombrePerfil" name="nombrePerfil" [(ngModel)]="perfil.nombrePerfil" required>
+      </div>
+      <button type="submit" class="guardar-button" [disabled]="perfilForm.invalid">Crear perfil</button>
+    </form>
+  </div>

@@ -1,0 +1,23 @@
+<div class="fondo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <div class="main-container">
+        <div class="container">
+            <h2>Iniciar Sesión</h2>
+            <form (ngSubmit)="login()">  <!-- Asegúrate de usar ngSubmit en lugar de submit -->
+                <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="Usuario" required><br>
+                <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Contraseña" required><br>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+        <div class="container register-container">
+            <h2>¿Aún no tienes una cuenta?</h2>
+            <p>Regístrate para que puedas iniciar sesión</p>
+        </div>
+    </div>
+</div>
+
+<div class="collapse navbar-collapse" id="ftco-nav">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a routerLink="/" class="nav-link"><b>Inicio</b></a></li>
+    </ul>
+</div>
